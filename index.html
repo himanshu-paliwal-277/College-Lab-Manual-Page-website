@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Lab Manual</title>
+  <!-- Tailwind css CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Website logo -->
+  <link rel="shortcut icon" href="./Assets/logo.png" type="image/x-icon">
+  <style>
+    .A4_size_page {
+      width: 210mm;
+      height: 297mm;
+      padding: 20mm;
+      box-sizing: border-box;
+      background: white;
+      box-shadow: 0 0 15px rgba(87, 0, 248, 0.4);
+      margin-bottom: 20px;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(168, 168, 168) rgba(255, 255, 255, 0);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center overflow-y-scroll bg-gray-300">
+  <!-- Buttons -->
+  <div class="sticky top-3 w-full flex justify-end px-4 font-semibold z-10">
+    <button id="addPageButton" class="flex items-center shadow-xl p-4 mr-3 bg-sky-300 rounded-full duration-100 hover:scale-110" title="Add New Page">
+        <!-- Add New Page -->
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+    </button>
+    <button id="downloadButton" class="flex items-center shadow-xl p-4 bg-green-400 rounded-full duration-100 hover:scale-110" title="Download as PDF">
+        <!-- Download as PDF -->
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+    </button>
+  </div>
+  
+  <!-- Pages Container -->
+  <div id="pagesContainer" class="m-4 flex flex-col items-center text-lg "></div>
+
+  <!-- Template for new pages -->
+  <template id="pageTemplate" class="sm:scale-100 scale-[0.45]">
+    <div class="A4_size_page flex flex-col items-center text-lg page">
+      <h1 class="font-semibold text-[40px] mt-10">LAB MANUAL</h1>
+      <div class="mt-6 flex justify-center mb-10">
+        <h3 class="text-[20px]">Subject Name</h3>
+        <div class="relative">
+          <h3 class="text-[20px] ml-2">(<span class="Subject_code_span">Sub. code</span>)</h3>
+          <input type="text" class="Subject_code_input w-24 ml-2 absolute text-transparent bg-transparent left-0 top-0" required value="" />
+        </div>
+      </div>
+      <img class="w-[50%] h-[27%]" src="./Assets/mist_logo.png" alt="college logo" />
+      <h2 class="mt-8">Department of Computer Science and Engineering</h2>
+      <input type="text" class="Subject_name_input text-center w-60 mt-1 mb-4 font-semibold" placeholder="Subject name" required />
+      <input class="font-semibold mb-4 text-center" type="text" value="B.Tech 3rd year CS" />
+      <h3 class="flex">
+        <span class="font-semibold mr-2">SEM</span>
+        <div class="relative">
+          <span class="Semester_span">VI</span>
+          <input class="Semester_input w-6 absolute top-0 left-0 text-transparent bg-transparent" type="text" value="" />
+        </div>
+      </h3>
+      <div class="flex justify-between mt-16 w-full">
+        <div class="w-[30%]">
+          <h3 class="mb-2">Guided By</h3>
+          <div class="flex">
+            <label class="mr-2">Prof.</label>
+            <div class="relative">
+              <span class="Prof_name_span">Prof. name</span>
+              <input class="Prof_name_input absolute text-transparent bg-transparent left-0 top-0" type="text" required />
+            </div>
+          </div>
+        </div>
+        <div class="w-[45%] text-end">
+          <h3 class="mb-2">Submitted By</h3>
+          <div class="flex flex-col">
+            <div class="flex mb-2 justify-end">
+              <label class="mr-2">Name : </label>
+              <div class="relative">
+                <span class="Your_name_span">Your name</span>
+                <input class="Your_name_input absolute top-0 left-0 text-transparent bg-transparent w-40" type="text" required />
+              </div>
+            </div>
+            <div class="flex justify-end">
+              <label class="mr-2">Roll No : </label>
+              <div class="relative">
+                <span class="Your_Roll_no_span">Your Roll no.</span>
+                <input class="Your_Roll_no_input absolute top-0 left-0 text-transparent bg-transparent w-40" type="text" required />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-24 flex flex-col items-center">
+        <p>DEPARTMENT OF COMPUTER SCIENCE ENGINEERING</p>
+        <p>MALWA INSTITUTE OF SCIENCE AND TECHNOLOGY</p>
+        <p>VILLAGE LIMBODAGARI, SAWER ROAD</p>
+        <p>INDORE</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Load the latest version of html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Load the latest version of jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const pagesContainer = document.getElementById('pagesContainer');
+    const pageTemplate = document.getElementById('pageTemplate').content;
+
+    let addPageButton = document.getElementById('addPageButton');
+    
+
+    addPageButton.addEventListener('click', () => {
+      const newPage = document.importNode(pageTemplate, true);
+      pagesContainer.appendChild(newPage);
+
+      // Update references to dynamically added elements
+      const newPageElement = pagesContainer.lastElementChild;
+
+      const Subject_name_input = newPageElement.querySelector('.Subject_name_input');
+      const Subject_code_span = newPageElement.querySelector('.Subject_code_span');
+      const Subject_code_input = newPageElement.querySelector('.Subject_code_input');
+      const Semester_span = newPageElement.querySelector('.Semester_span');
+      const Semester_input = newPageElement.querySelector('.Semester_input');
+      const Prof_name_span = newPageElement.querySelector('.Prof_name_span');
+      const Prof_name_input = newPageElement.querySelector('.Prof_name_input');
+      const Your_name_span = newPageElement.querySelector('.Your_name_span');
+      const Your_name_input = newPageElement.querySelector('.Your_name_input');
+      const Your_Roll_no_span = newPageElement.querySelector('.Your_Roll_no_span');
+      const Your_Roll_no_input = newPageElement.querySelector('.Your_Roll_no_input');
+
+      Subject_name_input.addEventListener('input', () => {
+        newPageElement.querySelector('h3').innerText = Subject_name_input.value;
+      });
+
+      Subject_code_input.addEventListener('input', () => {
+        Subject_code_span.innerText = Subject_code_input.value;
+      });
+
+      Semester_input.addEventListener('input', () => {
+        Semester_span.innerText = Semester_input.value;
+      });
+
+      Prof_name_input.addEventListener('input', () => {
+        Prof_name_span.innerText = Prof_name_input.value;
+      });
+
+      Your_name_input.addEventListener('input', () => {
+        Your_name_span.innerText = Your_name_input.value;
+      });
+
+      Your_Roll_no_input.addEventListener('input', () => {
+        Your_Roll_no_span.innerText = Your_Roll_no_input.value;
+      });
+    });
+    setTimeout(() => {
+        addPageButton.click();
+    }, 1000);
+
+    document.getElementById('downloadButton').addEventListener('click', () => {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const pages = document.querySelectorAll('.page');
+
+      Promise.all(Array.from(pages).map(page => html2canvas(page, { backgroundColor: '#ffffff', scale: 2 })))
+        .then(canvases => {
+          canvases.forEach((canvas, index) => {
+            if (index > 0) {
+              pdf.addPage();
+            }
+            const imgData = canvas.toDataURL('image/png');
+            pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+          });
+          pdf.save('lab-manual.pdf');
+        })
+        .catch(error => {
+          console.error('Error generating PDF:', error);
+        });
+    });
+  </script>
+</body>
+</html>
+   
